@@ -1,60 +1,69 @@
-function password () {
+function passwordRequirements () {
     var passLength = prompt("How long would you like your password to be?")
 
     if (passLength < 8) {
         alert("Password must have at least 8 characters! Try again.");
-        password();  
+        passwordRequirements();  
     }
     else if (passLength > 128) {
         alert ("Password cannot exceed 128 characters! Try again.");
-        password();
+        passwordRequirements();
     }
     else if (isNaN(passLength) === true) {
         alert("Password length must be entered as a number. Try again.")
-        password();
+        passwordRequirements();
     }
     else {
-        // criteria()
-    
 
-        // function criteria () {
-            var lowerReq = confirm("Will you require lower case letters in your password?");
+        var lowerReq = confirm("Will you require lower case letters in your password?");
 
-            var upperReq = confirm("Will you require upper case letters in your password?");
+        var upperReq = confirm("Will you require upper case letters in your password?");
 
-            var numReq = confirm("Will you require numbers in your password?")
+        var numReq = confirm("Will you require numbers in your password?")
 
-            var specReq = confirm("Will you require special characters in your password?")
+        var specReq = confirm("Will you require special characters in your password?")
 
-            if(
-                lowerReq === false &&
-                upperReq === false &&
-                numReq === false &&
-                specReq ===false
-            ){
-                alert("You must choose at least one character type to include in password. Try again")
-                // criteria()
-                password();
-            }
+        if(
+            lowerReq === false &&
+            upperReq === false &&
+            numReq === false &&
+            specReq ===false
+        ){
+            alert("You must choose at least one character type to include in password. Try again")
+            // criteria()
+            passwordRequirements();
+        }
 
-            var passwordSpecs = {
-                passLength : passLength,
-                upperReq : upperReq,
-                lowerReq : lowerReq,
-                numReq : numReq,
-                specReq : specReq 
-            }
-        
-            console.log (passwordSpecs)
-        // }
+        var passwordSpecs = {
+            passLength : passLength,
+            upperReq : upperReq,
+            lowerReq : lowerReq,
+            numReq : numReq,
+            specReq : specReq 
+        }        
     }
+    // generatePassword()
 }
 
 
-password();
+// function generatePassword () {
+//     if (
+//         upperReq === true &&
+//         lowerReq === true &&
+//         numReq === false &&
+//         specReq === false
+//     ) {
+//         var length = passLength,
+//         charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
+//         retVal = "";
+//         for (var i = 0, n = charset.length; i < length; ++i) {
+//             retVal += charset.charAt(Math.floor(Math.random() * n));
+//         }
+//         document.write(retVal)
+//     }
+// }
 
-
-
+passwordRequirements()
 
 
 
