@@ -1,3 +1,91 @@
+var lowerChar = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z"
+];
+
+var upperChar = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z"
+];
+
+var specChar = [
+    "@",
+    "%",
+    "+",
+    "\\",
+    "/",
+    "'",
+    "!",
+    "#",
+    "$",
+    "^",
+    "?",
+    ":",
+    ",",
+    ")",
+    "(",
+    "}",
+    "{",
+    "]",
+    "[",
+    "~",
+    "-",
+    "_",
+    "."
+];
+
+var numChar = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+
+
+
 function passwordRequirements () {
     var passLength = prompt("How long would you like your password to be?")
 
@@ -42,7 +130,161 @@ function passwordRequirements () {
             specReq : specReq 
         }        
     }
-    // generatePassword()
+    return passwordSpecs
+}
+
+function getRandom(arr) {
+    var randIndex = Math.floor(Math.random() * arr.length);
+    var randElement = arr[randIndex];
+
+    return randElement;
+}
+
+function joinArr () {
+    var specs = passwordRequirements();
+
+    var optionsArr = [];
+
+    if (
+        specs.upperReq === true &&
+        specs.lowerReq === false &&
+        specs.numReq === false &&
+        specs.specReq === false
+    ){
+        optionsArr = upperChar
+    }
+
+    else if (
+        specs.upperReq === false &&
+        specs.lowerReq === true &&
+        specs.numReq === false &&
+        specs.specReq === false
+    ){
+        optionsArr = lowerChar
+    }
+
+    else if (
+        specs.upperReq === false &&
+        specs.lowerReq === false &&
+        specs.numReq === true &&
+        specs.specReq === false
+    ){
+        optionsArr = numChar
+    }
+
+    else if (
+        specs.upperReq === false &&
+        specs.lowerReq === false &&
+        specs.numReq === false &&
+        specs.specReq === true
+    ){
+        optionsArr = specChar
+    }
+
+    else if (
+        specs.upperReq === true &&
+        specs.lowerReq === true &&
+        specs.numReq === false &&
+        specs.specReq === false
+    ){
+        optionsArr = optionsArr.concat(upperChar, lowerChar)
+    }
+
+    else if (
+        specs.upperReq === true &&
+        specs.lowerReq === false &&
+        specs.numReq === true &&
+        specs.specReq === false
+    ){
+        optionsArr = optionsArr.concat(upperChar, numChar)
+    }
+
+    else if (
+        specs.upperReq === true &&
+        specs.lowerReq === false &&
+        specs.numReq === false &&
+        specs.specReq === true
+    ){
+        optionsArr = optionsArr.concat(upperChar, specChar)
+    }
+
+    else if (
+        specs.upperReq === false &&
+        specs.lowerReq === true &&
+        specs.numReq === true &&
+        specs.specReq === false
+    ){
+        optionsArr = optionsArr.concat(lowerChar, numChar)
+    }
+
+    else if (
+        specs.upperReq === false &&
+        specs.lowerReq === true &&
+        specs.numReq === false &&
+        specs.specReq === true
+    ){
+        optionsArr = optionsArr.concat(lowerChar, specChar)
+    }
+
+    else if (
+        specs.upperReq === false &&
+        specs.lowerReq === false &&
+        specs.numReq === true &&
+        specs.specReq === true
+    ){
+        optionsArr = optionsArr.concat(numChar, specChar)
+    }
+
+    else if (
+        specs.upperReq === true &&
+        specs.lowerReq === true &&
+        specs.numReq === true &&
+        specs.specReq === false
+    ){
+        optionsArr = optionsArr.concat(upperChar, lowerChar, numChar)
+    }
+
+    else if (
+        specs.upperReq === true &&
+        specs.lowerReq === true &&
+        specs.numReq === false &&
+        specs.specReq === true
+    ){
+        optionsArr = optionsArr.concat(upperChar, lowerChar, specChar)
+    }
+
+    else if (
+        specs.upperReq === true &&
+        specs.lowerReq === false &&
+        specs.numReq === true &&
+        specs.specReq === true
+    ){
+        optionsArr = optionsArr.concat(upperChar, numChar, specChar)
+    }
+
+    else if (
+        specs.upperReq === false &&
+        specs.lowerReq === true &&
+        specs.numReq === true &&
+        specs.specReq === true
+    ){
+        optionsArr = optionsArr.concat(lowerChar, numChar, specChar)
+    }
+
+    else if (
+        specs.upperReq === true &&
+        specs.lowerReq === true &&
+        specs.numReq === true &&
+        specs.specReq === true
+    ){
+        optionsArr = optionsArr.concat(upperChar, lowerChar, numChar, specChar)
+    }
+
+    else {
+        document.write("What the actual Fuck??")
+    }
+
+    console.log (optionsArr)
 }
 
 
@@ -63,9 +305,8 @@ function passwordRequirements () {
 //     }
 // }
 
-passwordRequirements()
 
-
+joinArr()
 
 // function criteria() {
 //     var lower = prompt("Will you require lower case letters?")
