@@ -87,7 +87,7 @@ var numChar = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 
 function passwordRequirements () {
-    var passLength = prompt("How long would you like your password to be?")
+    var passLength = parseInt(prompt("How long would you like your password to be?"))
 
     if (passLength < 8) {
         alert("Password must have at least 8 characters! Try again.");
@@ -133,17 +133,15 @@ function passwordRequirements () {
     return passwordSpecs
 }
 
-function getRandom(arr) {
-    var randIndex = Math.floor(Math.random() * arr.length);
-    var randElement = arr[randIndex];
+var arr = joinArr();
 
-    return randElement;
-}
+
 
 function joinArr () {
     var specs = passwordRequirements();
-
     var optionsArr = [];
+
+    var reqArr = [];
 
     if (
         specs.upperReq === true &&
@@ -152,6 +150,8 @@ function joinArr () {
         specs.specReq === false
     ){
         optionsArr = upperChar
+        reqArr = upperChar
+        createPass()
     }
 
     else if (
@@ -161,6 +161,8 @@ function joinArr () {
         specs.specReq === false
     ){
         optionsArr = lowerChar
+        reqArr = lowerChar
+        createPass()
     }
 
     else if (
@@ -170,6 +172,8 @@ function joinArr () {
         specs.specReq === false
     ){
         optionsArr = numChar
+        reqArr = numChar
+        createPass()
     }
 
     else if (
@@ -179,6 +183,8 @@ function joinArr () {
         specs.specReq === true
     ){
         optionsArr = specChar
+        reqArr = specChar
+        createPass()
     }
 
     else if (
@@ -188,6 +194,8 @@ function joinArr () {
         specs.specReq === false
     ){
         optionsArr = optionsArr.concat(upperChar, lowerChar)
+        reqArr = [upperChar, lowerChar]
+        createPass()
     }
 
     else if (
@@ -197,6 +205,8 @@ function joinArr () {
         specs.specReq === false
     ){
         optionsArr = optionsArr.concat(upperChar, numChar)
+        reqArr = [upperChar, numChar]
+        createPass()
     }
 
     else if (
@@ -206,6 +216,8 @@ function joinArr () {
         specs.specReq === true
     ){
         optionsArr = optionsArr.concat(upperChar, specChar)
+        reqArr = [upperChar, specChar]
+        createPass()
     }
 
     else if (
@@ -215,6 +227,8 @@ function joinArr () {
         specs.specReq === false
     ){
         optionsArr = optionsArr.concat(lowerChar, numChar)
+        reqArr = [lowerChar, numChar]
+        createPass()
     }
 
     else if (
@@ -224,6 +238,8 @@ function joinArr () {
         specs.specReq === true
     ){
         optionsArr = optionsArr.concat(lowerChar, specChar)
+        reqArr = [lowerChar, specChar]
+        createPass()
     }
 
     else if (
@@ -233,6 +249,8 @@ function joinArr () {
         specs.specReq === true
     ){
         optionsArr = optionsArr.concat(numChar, specChar)
+        reqArr = [numChar, specChar]
+        createPass()
     }
 
     else if (
@@ -242,6 +260,8 @@ function joinArr () {
         specs.specReq === false
     ){
         optionsArr = optionsArr.concat(upperChar, lowerChar, numChar)
+        reqArr = [upperChar, lowerChar, numChar]
+        createPass()
     }
 
     else if (
@@ -251,6 +271,8 @@ function joinArr () {
         specs.specReq === true
     ){
         optionsArr = optionsArr.concat(upperChar, lowerChar, specChar)
+        reqArr = [upperChar, lowerChar, specChar]
+        createPass()
     }
 
     else if (
@@ -260,6 +282,8 @@ function joinArr () {
         specs.specReq === true
     ){
         optionsArr = optionsArr.concat(upperChar, numChar, specChar)
+        reqArr = [upperChar, numChar, specChar]
+        createPass()
     }
 
     else if (
@@ -269,6 +293,8 @@ function joinArr () {
         specs.specReq === true
     ){
         optionsArr = optionsArr.concat(lowerChar, numChar, specChar)
+        reqArr = [lowerChar, numChar, specChar]
+        createPass()
     }
 
     else if (
@@ -278,6 +304,8 @@ function joinArr () {
         specs.specReq === true
     ){
         optionsArr = optionsArr.concat(upperChar, lowerChar, numChar, specChar)
+        reqArr = [upperChar, lowerChar, numChar, specChar]
+        createPass()
     }
 
     else {
@@ -285,102 +313,38 @@ function joinArr () {
     }
 
     console.log (optionsArr)
+        // possibleCharacters
+    console.log (reqArr)
+        // guaranteedCharacters
+    
+    return optionsArr
+
+
+    function createPass() {
+
+        var result = [];
+    
+        function getRandom(optionsArr) {
+            var randIndex = Math.floor(Math.random() * optionsArr.length);
+            var randElement = optionsArr[randIndex];
+        
+            return randElement;
+        }
+        
+        for (var i=0; i<specs.passLength; i++) {
+        
+            // var result = optionsArr[Math.floor(Math.random() * optionsArr.length)]
+
+            var finalPass = getRandom(optionsArr)
+            
+            result.push(finalPass)
+        }
+
+        return result.join('')
+
+    }
 }
 
 
-// function generatePassword () {
-//     if (
-//         upperReq === true &&
-//         lowerReq === true &&
-//         numReq === false &&
-//         specReq === false
-//     ) {
-//         var length = passLength,
-//         charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ",
-//         retVal = "";
-//         for (var i = 0, n = charset.length; i < length; ++i) {
-//             retVal += charset.charAt(Math.floor(Math.random() * n));
-//         }
-//         document.write(retVal)
-//     }
-// }
 
 
-joinArr()
-
-// function criteria() {
-//     var lower = prompt("Will you require lower case letters?")
-
-//     if (lower == "yes") {
-//         alert("Lower case letters will be included.")
-//         upperReq();
-//     }
-//     else if (lower == "no") {
-//         alert("Lower case letters will not be included.")
-//         upperReq();
-//     }
-//     else {
-//         alert("Please answer either yes or no.");
-//         criteria();
-//     }
-// }
-
-// function upperReq() {
-//     var upper = prompt("Will you require upper case letters?")
-
-//     if (upper == "yes") {
-//         alert("Upper case letters will be included.")
-//         numberReq()
-//     }
-//     else if (upper == "no") {
-//         alert("Upper case letters will not be included.")
-//         numberReq()
-//     }
-//     else {
-//         alert("Please answer either yes or no.");
-//         upperReq();
-//     }
-// }
-
-// function numberReq() {
-//     var number = prompt("Will you require numbers?")
-
-//     if (number == "yes") {
-//         alert("Numbers will be included.")
-//         specReq()
-//     }
-//     else if (number == "no") {
-//         alert("Numbers will not be included.")
-//         specReq()
-//     }
-//     else {
-//         alert("Please answer either yes or no.");
-//         numberReq();
-//     }
-// }
-
-// function specReq() {
-//     var speChar = prompt("Will you require special characters?")
-
-//     if (speChar == "yes") {
-//         alert("Special characters will be included.")
-
-//     }
-//     else if (speChar == "no") {
-//         alert("Special characters will not be included.")
-//         if (
-//             lower === "no" &&
-//             upper === "no" &&
-//             number === "no" &&
-//             specChar === "no"
-//         ){
-//             alert("Must choose at least one character type to require. Try again.");
-//             criteria();
-//         }
-        
-//     }
-//     else {
-//         alert("Please answer either yes or no.");
-//         numberReq();
-//     }
-// }
